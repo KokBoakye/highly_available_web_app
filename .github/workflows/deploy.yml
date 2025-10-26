@@ -59,10 +59,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    # Convert Checkov JSON to HTML
-      - name: Convert Checkov JSON to HTML
-        run: |
-          checkov-html -i checkov_results.json -o checkov_results.html
+
 
      # Upload Checkov Report 
       - name: Upload security reports
@@ -70,5 +67,4 @@ jobs:
         with:
           name: security-reports
           path: |           
-            checkov_results.html
             checkov_results.json
