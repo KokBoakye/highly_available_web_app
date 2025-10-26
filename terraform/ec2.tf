@@ -38,6 +38,8 @@ DB_NAME=$(echo $DB_SECRET | jq -r .db_name)
 DB_USERNAME=$(echo $DB_SECRET | jq -r .username)
 DB_PASSWORD=$(echo $DB_SECRET | jq -r .password)
 DB_HOST=$(echo $DB_SECRET | jq -r .host)
+
+# EFS_FS_ID 
 EFS_FS_ID="fs-042f67eb976091ea4"
 
 dnf update -y
