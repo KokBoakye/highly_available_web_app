@@ -25,7 +25,7 @@ resource "aws_launch_template" "main_app_launch_template" {
 # DB_USERNAME="adminuser"
 # DB_PASSWORD="ChangeMe123!"
 # DB_HOST="workshop-db-instance.c1kogmiaevbz.eu-north-1.rds.amazonaws.com"
-# EFS_FS_ID="fs-0914ebe45d08ddb2e"
+# EFS_FS_ID="fs-042f67eb976091ea4"
 
 # Install AWS CLI v2 if not installed
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -38,6 +38,7 @@ DB_NAME=$(echo $DB_SECRET | jq -r .db_name)
 DB_USERNAME=$(echo $DB_SECRET | jq -r .username)
 DB_PASSWORD=$(echo $DB_SECRET | jq -r .password)
 DB_HOST=$(echo $DB_SECRET | jq -r .host)
+EFS_FS_ID="fs-042f67eb976091ea4"
 
 dnf update -y
 
