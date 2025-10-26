@@ -53,7 +53,7 @@ jobs:
         uses: bridgecrewio/checkov-action@master
         with:
           directory: ./terraform
-          output_format: html
+          output_format: json
           output_file_path: checkov_results.json
           soft_fail: true
         env:
