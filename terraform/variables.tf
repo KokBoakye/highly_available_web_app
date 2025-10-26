@@ -42,7 +42,7 @@ variable "cidr_block_private_subnet_data" {
 variable "project_name" {
   description = "The name of the project."
   type        = string
-  default     = "wordpress_app"
+  default     = "wordpress-app"
 
 }
 
