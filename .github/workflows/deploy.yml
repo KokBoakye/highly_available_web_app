@@ -40,8 +40,8 @@ jobs:
       - name: Initialize Terraform
         run: terraform init 
 
-      - name: Destroy terrafrom
-        run: terraform destroy -auto-approve
+      - name: Validate Terraform configuration
+        run: terraform validate
 
       - name: Apply Terraform configuration
         run: terraform apply -auto-approve 
