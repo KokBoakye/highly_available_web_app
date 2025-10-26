@@ -38,10 +38,10 @@ jobs:
           aws-region: eu-north-1
 
       - name: Initialize Terraform
-        run: terraform init terraform/
+        run: terraform init 
 
       - name: Apply Terraform configuration
-        run: terraform apply -auto-approve terraform/
+        run: terraform apply -auto-approve 
 
        # IaC Scan: Checkov 
       - name: Run Checkov (Terraform)
