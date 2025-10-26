@@ -3,6 +3,11 @@ name: Deploy Infrastructure
 on:
   push:
     branches:
+      - dev
+
+
+  pull_request:
+    branches:
       - main
 
 permissions:
@@ -33,3 +38,22 @@ jobs:
 
       - name: Apply Terraform configuration
         run: terraform apply -auto-approve terraform/
+
+       # IaC Scan: Checkov 
+      - name: Run Checkov (Terraform)
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: ./terraform
+          output_format: json
+          output_file_path: checkov_results.json
+          soft_fail: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+     # Upload Checkov Report 
+      - name: Upload security reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: security-reports
+          path: |           
+            checkov_results.json
