@@ -54,7 +54,7 @@ jobs:
       - name: Destroy terrafrom
         run: terraform destroy -auto-approve
 
-      # IaC Scan: Checkov 
+      #IaC Scan: Checkov 
       - name: Run Checkov (Terraform)
         uses: bridgecrewio/checkov-action@master
         with:
