@@ -18,6 +18,10 @@ resource "aws_launch_template" "main_app_launch_template" {
     security_groups             = [aws_security_group.webserver.id, aws_security_group.efs_clients.id, aws_security_group.database_clients.id]
   }
 
+  lifecycle {
+    create_before_destroy = true
+  }
+
   user_data = base64encode(<<-EOF
 #!/bin/bash
 
@@ -111,6 +115,17 @@ resource "aws_autoscaling_group" "main_app_asg" {
     key                 = "Name"
     value               = "${var.project_name}-asg-instance"
     propagate_at_launch = true
+  }
+
+  instance_refresh {
+    strategy = "RollingUpdate"
+
+    preferences {
+      min_healthy_percentage = 90
+      instance_warmup        = 300
+    }
+
+    triggers = ["launch", "terminate"]
   }
 
 }
