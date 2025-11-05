@@ -117,15 +117,13 @@ resource "aws_autoscaling_group" "main_app_asg" {
     propagate_at_launch = true
   }
 
-  instance_refresh {
-    strategy = "RollingUpdate"
-
-    preferences {
-      min_healthy_percentage = 90
-      instance_warmup        = 300
-    }
-
-    triggers = ["launch", "terminate"]
+  lifecycle {
+    create_before_destroy = true
   }
+
+
+
+  depends_on = [aws_launch_template.main_app_launch_template]
+
 
 }
